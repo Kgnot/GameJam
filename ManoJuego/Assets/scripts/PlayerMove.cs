@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMove : MonoBehaviour
 {
-    public CharacterController charController;
-    public Camera camera;
-    [SerializeField] private float mouseSensitivity = 10f; // sensibility
-    [SerializeField] private static float _speed = 8f;
+    public CharacterController charController;  
+    public Camera playerCamera;
+    [SerializeField] private float mouseSensitivity = 15f; // sensibility
+    [SerializeField] private static float _speed = 11f;
     [SerializeField] private float xRotation = 28f;
     //Max , min rotate
     [SerializeField] private float maxRotation = 150f, minRotation = 28f;
@@ -32,11 +33,23 @@ public class PlayerMove : MonoBehaviour
         //Movimiento:
         _movePlayer = transform.forward*vertical + transform.right*horizontal;
         _movePlayer = Vector3.ClampMagnitude(_movePlayer,1)*_speed;
-        verticalVelocity += gravity * Time.deltaTime;
-        _movePlayer.y = verticalVelocity;
+        setGravity();
         charController.Move(_movePlayer * Time.deltaTime);
         cameraMovement();
     }
+    
+    void setGravity(){
+        if (charController.isGrounded)
+        {
+            _movePlayer.y = gravity*Time.deltaTime;
+        }
+        else
+        {
+            verticalVelocity += gravity * Time.deltaTime;
+            _movePlayer.y = verticalVelocity;
+        }
+    }
+    
 
     void cameraMovement()
     {
@@ -44,12 +57,12 @@ public class PlayerMove : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         //las rotaciones se actualizaran;  
-        transform.Rotate(Vector3.up * mouseX*12);
+        transform.Rotate(Vector3.up * mouseX*15);
         
-        xRotation -= mouseY*5;
+        xRotation -= mouseY*7;
         Console.Out.WriteLine(xRotation);
         xRotation = Mathf.Clamp(xRotation, -10, 30);
-        camera.transform.localRotation = Quaternion.Euler(xRotation,0,0);
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation,0,0);
 
         
     }
