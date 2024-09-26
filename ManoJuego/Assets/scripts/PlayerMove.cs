@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,16 @@ public class PlayerMove : MonoBehaviour
 {
     public CharacterController charController;
     public Camera camera;
-    [SerializeField]private float mouseSensitivity = 1200f; // sensibility
-    [SerializeField]private static float _speed = 5f;
-    [SerializeField] private float xRotation = 30;
+    [SerializeField] private float mouseSensitivity = 10f; // sensibility
+    [SerializeField] private static float _speed = 8f;
+    [SerializeField] private float xRotation = 28f;
     //Max , min rotate
-    [SerializeField]private float maxRotation = 360,minRotation = -360;
+    [SerializeField] private float maxRotation = 150f, minRotation = 28f;
+    private Vector3 _movePlayer; // guardamos el input del jugador el control - Incorporara
+    // Ahora la parte de la gravedad: 
+    public float gravity = -9.81f;
+    private float verticalVelocity = 0f; // Velocidad vertical acumulada
 
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -26,20 +30,28 @@ public class PlayerMove : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         //Movimiento:
-        Vector3 movement = transform.forward*vertical + transform.right*horizontal;
-        charController.Move(movement * Time.deltaTime * _speed);
-        
+        _movePlayer = transform.forward*vertical + transform.right*horizontal;
+        _movePlayer = Vector3.ClampMagnitude(_movePlayer,1)*_speed;
+        verticalVelocity += gravity * Time.deltaTime;
+        _movePlayer.y = verticalVelocity;
+        charController.Move(_movePlayer * Time.deltaTime);
+        cameraMovement();
+    }
+
+    void cameraMovement()
+    {
         // Obtener el movimiento del mouse
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         //las rotaciones se actualizaran;  
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, minRotation, maxRotation);
+        transform.Rotate(Vector3.up * mouseX*12);
         
-        //camera.transform.localRotation = Quaternion.Euler(22+xRotation,0,0);
-        
-        transform.Rotate(Vector3.up * mouseX*8);
-        
+        xRotation -= mouseY*5;
+        Console.Out.WriteLine(xRotation);
+        xRotation = Mathf.Clamp(xRotation, -10, 30);
+        camera.transform.localRotation = Quaternion.Euler(xRotation,0,0);
+
         
     }
+    
 }

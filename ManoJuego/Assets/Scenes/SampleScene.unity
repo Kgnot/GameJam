@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &580028106 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1151388028547126963, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
-  m_PrefabInstance: {fileID: 1112909789}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +343,7 @@ Transform:
   m_GameObject: {fileID: 932416851}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 481.92496, y: 2.5, z: 511.5808}
+  m_LocalPosition: {x: 481.92496, y: 2.27, z: 511.5808}
   m_LocalScale: {x: 19.73625, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -368,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.76
+      value: 3.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -408,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -421,13 +416,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1151388028547126963, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1836103508}
+      addedObject: {fileID: 2013741124}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1584706021}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1584706022}
@@ -443,33 +435,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
   m_PrefabInstance: {fileID: 1112909789}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1584706021
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584706019}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &1584706022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -490,7 +455,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.7, y: 1, z: 2.5}
-  m_Center: {x: -0.25, y: 0.55, z: 0.24}
+  m_Center: {x: -0.25, y: 0.1, z: 0.24}
 --- !u!114 &1584706023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,11 +469,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charController: {fileID: 1584706024}
-  camera: {fileID: 1836103510}
+  camera: {fileID: 2013741126}
   mouseSensitivity: 20
   xRotation: 30
   maxRotation: 90
   minRotation: -90
+  gravity: -9.81
 --- !u!143 &1584706024
 CharacterController:
   m_ObjectHideFlags: 0
@@ -534,8 +500,13 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.13
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 2, z: 0}
---- !u!1 &1836103507
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1584706025 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e74e5c604f97a54428661200f5f7ab7c, type: 3}
+  m_PrefabInstance: {fileID: 1112909789}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2013741123
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -543,9 +514,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1836103508}
-  - component: {fileID: 1836103510}
-  - component: {fileID: 1836103509}
+  - component: {fileID: 2013741124}
+  - component: {fileID: 2013741126}
+  - component: {fileID: 2013741125}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -553,36 +524,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1836103508
+--- !u!4 &2013741124
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836103507}
+  m_GameObject: {fileID: 2013741123}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: 2, z: -1}
+  m_LocalPosition: {x: 0, y: 2.27, z: -1.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 580028106}
+  m_Father: {fileID: 1584706025}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
---- !u!81 &1836103509
+--- !u!81 &2013741125
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836103507}
+  m_GameObject: {fileID: 2013741123}
   m_Enabled: 1
---- !u!20 &1836103510
+--- !u!20 &2013741126
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836103507}
+  m_GameObject: {fileID: 2013741123}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
